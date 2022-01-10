@@ -14,6 +14,7 @@ const StyledCommentWrapper = styled.div`
   margin: 5px 0;
   padding: 4px;
   box-sizing: border-box;
+  min-width: 300px;
   border: 1px solid #eaeaea;
   ${(props) => (props.depth % 2 !== 0 ? 'background: #f7f7f8' : '')};
 `;
