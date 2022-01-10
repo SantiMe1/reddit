@@ -23,7 +23,7 @@ export default function Post() {
   return (
     <>
       {post ? (
-        <div>
+        <>
           <ListItem
             key={post.name}
             title={post.title}
@@ -55,7 +55,7 @@ export default function Post() {
           ) : (
             <div>There are no comments yet.</div>
           )}
-        </div>
+        </>
       ) : (
         <StyledLoading>Loading...</StyledLoading>
       )}
