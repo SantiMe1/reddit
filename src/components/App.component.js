@@ -26,6 +26,7 @@ const StyledTitle = styled.h1`
 
 const StyledContent = styled.div`
   padding: 20px;
+  word-break: break-word;
 `;
 
 function App() {

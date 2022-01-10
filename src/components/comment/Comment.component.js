@@ -6,6 +6,7 @@ import { ReactComponent as Arrow } from '../../assets/arrow.svg';
 import { voteComment, addComment } from '../../actions/reddit.actions';
 
 const StyledCommentWrapper = styled.div`
+  overflow: auto;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -51,7 +52,7 @@ const StyledDownArrow = styled.div`
 `;
 
 const StyledComment = styled.div`
-  width: 100%;
+  flex: 1;
 `;
 
 const StyledItemDescription = styled.div`
@@ -91,7 +92,7 @@ const StyledReplyBox = styled.div`
   align-items: center;
 `;
 const StyledReplyTexarea = styled.textarea`
-  width: 100%;
+  flex: 1;
   font-family: arial;
   border: 1px solid #c3c3c3;
   padding: 5px;

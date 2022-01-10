@@ -82,7 +82,7 @@ const StyledListItem = styled.li`
 `;
 
 const StyledItemInfo = styled.div`
-  width: 100%;
+  flex: 1;
 `;
 
 const StyledItemTitle = styled.div`
@@ -98,6 +98,7 @@ const StyledItemDescription = styled.div`
 
 const StyledVideoIcon = styled.img`
   width: 35px;
+  height: 35px;
   margin-right: 10px;
 `;
 
