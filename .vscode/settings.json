@@ -1,0 +1,7 @@
+{
+  "window.zoomLevel": 1,
+  "javascript.format.semicolons": "insert",
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true
+}
