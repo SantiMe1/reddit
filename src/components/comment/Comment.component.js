@@ -29,24 +29,31 @@ const StyledArrows = styled.div`
   color: #c1c2c3;
 `;
 
-const StyledUpArrow = styled.div`
+const StyledUpArrow = styled.button`
   height: 20px;
   width: 20px;
   &:hover svg path {
     fill: #ff0000;
   }
+  border: none;
+  padding: 0;
+  background: none;
   svg path {
     ${(props) => (props.selected ? 'fill: #ff0000' : '')};
   }
 `;
 
-const StyledDownArrow = styled.div`
+const StyledDownArrow = styled.button`
   height: 20px;
   width: 20px;
   transform: rotate(180deg);
   &:hover svg path {
     fill: #0060ff;
   }
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
   svg path {
     ${(props) => (props.selected ? 'fill: #0060ff' : '')};
   }
@@ -120,6 +127,17 @@ const StyledReplyCancel = styled.button`
   height: 30px;
 `;
 
+const StyledReplyButton = styled.button`
+  background: ${(props) => (props.isSubmit ? '#0067a4' : '#787878')};
+  border-radius: 5px;
+  border: 0;
+  margin-left: 6px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  height: 30px;
+`;
+
 const getReplyObj = (body, replies, depth) => {
   const id = replies ? replies.data.children.length : 0;
   const author = 'Me';
@@ -177,15 +195,11 @@ export default function Comment({
   };
 
   return (
-    <StyledCommentWrapper
-      ariaLabel={body}
-      tabIndex="0"
-      onClick={() => {}}
-      depth={depth}
-    >
+    <StyledCommentWrapper ariaLabel={body} tabIndex="0" depth={depth}>
       <StyledArrows>
         <StyledUpArrow
           selected={votedUp}
+          upArrow
           onClick={(e) => {
             e.preventDefault();
             voteUp(votedUp, votedDown);
@@ -195,6 +209,7 @@ export default function Comment({
         </StyledUpArrow>
         <StyledDownArrow
           selected={votedDown}
+          downArrow
           onClick={(e) => {
             e.preventDefault();
             voteDown(votedUp, votedDown);
@@ -226,36 +241,37 @@ export default function Comment({
                 setReply(e.target.value);
               }}
             />
-            <StyledReplySave onClick={saveReply}>save</StyledReplySave>
-            <StyledReplyCancel
+            <StyledReplyButton isSubmit onClick={saveReply}>
+              save
+            </StyledReplyButton>
+            <StyledReplyButton
               onClick={() => {
                 setReply('');
                 setShowReplyBox(false);
               }}
             >
               cancel
-            </StyledReplyCancel>
+            </StyledReplyButton>
           </StyledReplyBox>
         )}
-        {replies &&
-          replies.data?.children.map(
-            (item, index) =>
-              item.kind === 't1' && (
-                <Comment
-                  key={item.data.name}
-                  body={item.data.body}
-                  author={item.data.author}
-                  score={item.data.score}
-                  created={item.data.created}
-                  votedUp={item.data.votedUp}
-                  votedDown={item.data.votedDown}
-                  index={index}
-                  depth={item.data.depth}
-                  replies={item.data.replies}
-                  indexRoute={[...indexRoute, index]}
-                />
-              )
-          )}
+        {replies?.data?.children.map(
+          (item, index) =>
+            item.kind === 't1' && (
+              <Comment
+                key={item.data.name}
+                body={item.data.body}
+                author={item.data.author}
+                score={item.data.score}
+                created={item.data.created}
+                votedUp={item.data.votedUp}
+                votedDown={item.data.votedDown}
+                index={index}
+                depth={item.data.depth}
+                replies={item.data.replies}
+                indexRoute={[...indexRoute, index]}
+              />
+            )
+        )}
       </StyledComment>
     </StyledCommentWrapper>
   );
